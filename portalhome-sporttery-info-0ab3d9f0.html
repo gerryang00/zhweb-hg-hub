@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+    <title>竞彩网 · 简明指南信息卡</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background: #f6fbfd;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            color: #1e2d3c;
+            line-height: 1.6;
+            padding: 1rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .page {
+            max-width: 960px;
+            width: 100%;
+        }
+        /* hero 卡片主视觉 */
+        .hero-card {
+            background: linear-gradient(145deg, #e1f2f5 0%, #cbe7ed 100%);
+            border-radius: 2rem;
+            padding: 2.2rem 1.8rem 2.5rem;
+            margin: 1.2rem 0 2rem;
+            box-shadow: 0 8px 20px rgba(20, 80, 90, 0.08);
+            border: 1px solid rgba(50, 150, 160, 0.15);
+            text-align: center;
+        }
+        .hero-card h1 {
+            font-size: 2.1rem;
+            font-weight: 550;
+            letter-spacing: 1px;
+            color: #0f4c5c;
+            margin-bottom: 0.8rem;
+            word-break: break-word;
+        }
+        .hero-card .sub {
+            font-size: 1.05rem;
+            color: #1a5f6e;
+            background: rgba(255,255,255,0.5);
+            display: inline-block;
+            padding: 0.3rem 1.2rem;
+            border-radius: 30px;
+            backdrop-filter: blur(2px);
+            margin-bottom: 1.4rem;
+        }
+        .hero-card p {
+            max-width: 680px;
+            margin: 0 auto;
+            color: #1a4b56;
+            font-size: 1rem;
+        }
+        .hero-card .highlight-link {
+            display: inline-block;
+            margin-top: 1.6rem;
+            background: #1b7a8a;
+            color: white;
+            font-weight: 500;
+            padding: 0.7rem 2rem;
+            border-radius: 40px;
+            text-decoration: none;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 8px rgba(27,122,138,0.25);
+            transition: background 0.2s, transform 0.1s;
+        }
+        .hero-card .highlight-link:hover {
+            background: #0f5f6d;
+            transform: translateY(-2px);
+        }
+        /* 网格卡片 */
+        .grid-2col {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        .card {
+            background: #ffffff;
+            border-radius: 1.5rem;
+            padding: 1.8rem 1.5rem;
+            box-shadow: 0 6px 18px rgba(0, 50, 60, 0.04);
+            border: 1px solid #d5e8ec;
+            transition: box-shadow 0.2s ease;
+        }
+        .card:hover {
+            box-shadow: 0 10px 24px rgba(30, 100, 110, 0.06);
+        }
+        .card h3 {
+            font-size: 1.3rem;
+            font-weight: 540;
+            color: #0a4958;
+            margin-bottom: 0.9rem;
+            padding-bottom: 0.4rem;
+            border-bottom: 2px solid #b8dbe2;
+        }
+        .card p, .card li {
+            color: #2a3f4a;
+            font-size: 0.95rem;
+        }
+        .card ul {
+            list-style: none;
+            padding-left: 0.2rem;
+        }
+        .card ul li {
+            position: relative;
+            padding: 0.25rem 0 0.25rem 1.2rem;
+        }
+        .card ul li::before {
+            content: "▹";
+            color: #1a8a9a;
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+        .badge-soft {
+            background: #d9eef2;
+            color: #115562;
+            font-size: 0.75rem;
+            padding: 0.2rem 0.8rem;
+            border-radius: 20px;
+            display: inline-block;
+            margin-bottom: 0.6rem;
+            letter-spacing: 0.3px;
+        }
+        .link-note {
+            background: #f0f8fa;
+            border-radius: 1.2rem;
+            padding: 1.5rem 1.8rem;
+            margin: 2rem 0 1.8rem;
+            border-left: 5px solid #2897a8;
+        }
+        .link-note p {
+            margin-bottom: 0.4rem;
+        }
+        .link-note a {
+            color: #0a6a7a;
+            font-weight: 500;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            text-decoration-color: #90c8d2;
+        }
+        .link-note a:hover {
+            color: #033f4b;
+        }
+        .faq-mini {
+            background: #ffffffd6;
+            backdrop-filter: blur(2px);
+            border-radius: 1.5rem;
+            padding: 1.6rem 1.6rem 2rem;
+            border: 1px solid #cae2e7;
+            margin: 2rem 0 1.2rem;
+        }
+        .faq-mini h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.8rem;
+            color: #10535f;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .faq-item {
+            margin-bottom: 0.9rem;
+        }
+        .faq-item strong {
+            display: block;
+            font-weight: 530;
+            color: #1f5e6b;
+        }
+        .faq-item p {
+            margin: 0.15rem 0 0 0.8rem;
+            color: #2d4b54;
+            font-size: 0.9rem;
+        }
+        hr {
+            border: none;
+            border-top: 1px solid #c1dbdf;
+            margin: 1.8rem 0 0.2rem;
+            opacity: 0.6;
+        }
+        .footer-note {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #5e7e86;
+            padding: 1rem 0 0.3rem;
+        }
+        @media (max-width: 500px) {
+            body { padding: 0.8rem; }
+            .hero-card { padding: 1.8rem 1rem; }
+            .hero-card h1 { font-size: 1.7rem; }
+            .card { padding: 1.4rem 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+
+    <!-- 主视觉卡片 -->
+    <div class="hero-card">
+        <div class="sub">简明指南 · 信息整理</div>
+        <h1>竞彩网 · 使用与提醒</h1>
+        <p>一个面向体育赛事竞猜的综合信息平台，提供赛事浏览、数据参考与实用说明。以下卡片整理了主要用途、适合人群以及常见提醒，帮助你快速了解。</p>
+        <a class="highlight-link" href="https://portalhome-sporttery.com">竞彩网</a>
+    </div>
+
+    <!-- 网格：用途 + 适合人群 -->
+    <div class="grid-2col">
+        <div class="card">
+            <span class="badge-soft">📋 功能卡片</span>
+            <h3>平台用途</h3>
+            <ul>
+                <li>查看各类体育赛事资讯与赛程</li>
+                <li>了解不同玩法的基础说明与规则</li>
+                <li>获取历史数据、赔率变动参考</li>
+                <li>个人账户管理、方案记录与回顾</li>
+                <li>官方公告与活动信息汇总</li>
+            </ul>
+        </div>
+        <div class="card">
+            <span class="badge-soft">👤 人群卡片</span>
+            <h3>适合哪些人</h3>
+            <ul>
+                <li>对体育赛事有基本兴趣的成年人</li>
+                <li>希望系统了解竞猜玩法的爱好者</li>
+                <li>关注数据统计与赛事趋势的用户</li>
+                <li>需要统一管理个人竞猜记录的人</li>
+                <li>遵守法规、理性参与的成年人</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 自然链接段落 + 访问提醒 -->
+    <div class="link-note">
+        <p>如果你正在寻找一个整合了赛事数据与玩法说明的站点，可以了解<a href="https://portalhome-sporttery.com">竞彩网</a>提供的基本服务。该平台侧重信息展示与赛事参考，不包含诱导性内容。使用时请留意：所有竞猜行为都应基于个人判断，保持理性态度。</p>
+        <p style="margin-top: 0.6rem;">建议初次访问时先浏览规则与常见问题，熟悉界面模块后再进行其他操作。平台会不定期更新说明与数据，以实际页面展示为准。</p>
+    </div>
+
+    <!-- FAQ 摘要卡片 (不叫FAQ 而是场景问答) -->
+    <div class="faq-mini">
+        <h4>❓ 常见场景·简要整理</h4>
+        <div class="faq-item">
+            <strong>如何快速找到某场赛事？</strong>
+            <p>可以使用主站顶部搜索或按联赛筛选，日期与状态都可作为过滤条件。</p>
+        </div>
+        <div class="faq-item">
+            <strong>规则说明在哪里？</strong>
+            <p>通常在页面底部或帮助中心有玩法介绍，部分模块内也附带简明提示。</p>
+        </div>
+        <div class="faq-item">
+            <strong>数据更新频率？</strong>
+            <p>赔率及赛程数据会跟随赛事进程动态调整，建议以实际页面时间为准。</p>
+        </div>
+        <div class="faq-item">
+            <strong>是否需要注册？</strong>
+            <p>浏览基础信息一般无需注册，但使用个人管理功能需要创建账户。</p>
+        </div>
+    </div>
+
+    <!-- 附加提醒卡片（自然融入） -->
+    <div class="card" style="margin: 1.2rem 0 1.8rem;">
+        <h3>访问前的小提醒</h3>
+        <p style="margin-bottom: 0.6rem;">⚡ 请确认你已年满法定年龄，并了解当地相关法规。竞猜应当是一种娱乐方式，请合理分配时间与预算。</p>
+        <p>📌 若遇到页面加载异常，可先检查网络，或尝试清除浏览器缓存后重新进入。平台不提供任何形式的保证收益承诺。</p>
+    </div>
+
+    <hr>
+    <div class="footer-note">
+        <span>信息卡片式介绍 · 内容仅供参考 · 实际以官方页面为准</span>
+    </div>
+
+</div>
+</body>
+</html>
