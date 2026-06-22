@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+  <title>竞彩网 · 赛事资料索引</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      background: #f4f8fb;
+      color: #1c2e3b;
+      line-height: 1.6;
+      padding: 1rem;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
+      flex: 1;
+    }
+
+    /* ===== Hero ===== */
+    .hero {
+      background: linear-gradient(145deg, #0b3b44 0%, #1a5c66 100%);
+      color: #e9f6f8;
+      border-radius: 2.5rem 2.5rem 1.5rem 1.5rem;
+      padding: 3.2rem 2rem 2.8rem;
+      margin-bottom: 2.5rem;
+      box-shadow: 0 12px 28px -8px rgba(0, 40, 50, 0.35);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      right: -3rem;
+      top: -2rem;
+      width: 180px;
+      height: 180px;
+      background: radial-gradient(circle, rgba(80, 200, 190, 0.15) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .hero h1 {
+      font-size: 2.4rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      line-height: 1.25;
+      margin-bottom: 1rem;
+    }
+
+    .hero .sub {
+      font-size: 1.1rem;
+      opacity: 0.88;
+      max-width: 620px;
+      font-weight: 380;
+    }
+
+    .hero .tagline {
+      display: inline-block;
+      background: rgba(220, 248, 242, 0.15);
+      backdrop-filter: blur(2px);
+      padding: 0.4rem 1.2rem;
+      border-radius: 40px;
+      font-size: 0.85rem;
+      color: #b6e3de;
+      margin-top: 1.2rem;
+      border: 1px solid rgba(150, 220, 210, 0.2);
+    }
+
+    /* ===== 网格卡片 ===== */
+    .grid-2col,
+    .grid-3col {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .card {
+      background: #ffffffec;
+      backdrop-filter: blur(1px);
+      border-radius: 1.75rem;
+      padding: 1.8rem 1.5rem 1.6rem;
+      box-shadow: 0 5px 18px rgba(0, 55, 65, 0.06), 0 0 0 1px rgba(20, 105, 105, 0.04);
+      transition: all 0.2s ease;
+      border-left: 4px solid #00897b;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 14px 30px -6px rgba(6, 75, 80, 0.18);
+      border-left-width: 6px;
+      border-left-color: #0f7a6e;
+    }
+
+    .card h3 {
+      font-size: 1.3rem;
+      font-weight: 520;
+      color: #0f4b4f;
+      margin-bottom: 0.8rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .card h3 i {
+      display: inline-block;
+      width: 6px;
+      height: 18px;
+      background: #1b8f80;
+      border-radius: 12px;
+      margin-right: 0.1rem;
+    }
+
+    .card p {
+      font-size: 0.96rem;
+      color: #2f4b54;
+      margin-bottom: 0.2rem;
+    }
+
+    .card .small-meta {
+      font-size: 0.8rem;
+      color: #5f7d84;
+      margin-top: 0.8rem;
+      border-top: 1px dashed #cbdbe0;
+      padding-top: 0.6rem;
+    }
+
+    .accent-border-bluegreen {
+      border-left-color: #1c9c8b;
+    }
+
+    /* ===== 说明区/引用 ===== */
+    .info-block {
+      background: #e5f0f2;
+      border-radius: 2rem;
+      padding: 2rem 2.2rem;
+      margin-bottom: 2.5rem;
+      border: 1px solid #cfe2e5;
+      box-shadow: inset 0 1px 6px rgba(0, 60, 60, 0.03);
+    }
+
+    .info-block h2 {
+      font-size: 1.5rem;
+      font-weight: 520;
+      color: #12454b;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+    }
+
+    .info-block h2 span {
+      background: #00897b;
+      width: 10px;
+      height: 10px;
+      display: inline-block;
+      border-radius: 20px;
+      margin-right: 0.8rem;
+    }
+
+    .info-block p {
+      margin-bottom: 0.8rem;
+      color: #1d3c42;
+    }
+
+    .info-block ul {
+      list-style: none;
+      padding-left: 0.2rem;
+    }
+
+    .info-block li {
+      padding: 0.3rem 0 0.3rem 1.6rem;
+      position: relative;
+      margin-bottom: 0.3rem;
+      color: #1c4048;
+    }
+
+    .info-block li::before {
+      content: "▹";
+      position: absolute;
+      left: 0;
+      color: #1d9486;
+      font-weight: 600;
+    }
+
+    /* ===== FAQ 摘要 ===== */
+    .faq-summary {
+      background: #ffffff;
+      border-radius: 1.8rem;
+      padding: 1.8rem 2rem 2rem;
+      box-shadow: 0 6px 18px rgba(0, 50, 55, 0.04);
+      margin-bottom: 2.5rem;
+    }
+
+    .faq-summary h2 {
+      font-weight: 500;
+      font-size: 1.4rem;
+      color: #10474d;
+      margin-bottom: 1.2rem;
+      border-bottom: 1px solid #d0e2e5;
+      padding-bottom: 0.6rem;
+    }
+
+    .faq-item {
+      margin-bottom: 1rem;
+    }
+
+    .faq-item strong {
+      color: #0f5c5c;
+      display: block;
+      font-weight: 540;
+      margin-bottom: 0.15rem;
+    }
+
+    .faq-item p {
+      color: #2c515b;
+      font-size: 0.95rem;
+      padding-left: 0.4rem;
+    }
+
+    .faq-more {
+      text-align: right;
+      margin-top: 0.4rem;
+      font-size: 0.85rem;
+      color: #1b8a7d;
+    }
+
+    /* ===== 底部链接 ===== */
+    .footer-links {
+      border-top: 1px solid #cde0e3;
+      padding: 1.8rem 0.5rem 1.2rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.8rem 1.5rem;
+      font-size: 0.9rem;
+      color: #2b5e64;
+      margin-top: 0.5rem;
+    }
+
+    .footer-links a {
+      color: #09635c;
+      text-decoration: none;
+      font-weight: 480;
+      border-bottom: 1px dotted #7bb8b0;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .footer-links a:hover {
+      border-bottom: 1px solid #09635c;
+      color: #023b3d;
+    }
+
+    .footer-note {
+      font-size: 0.8rem;
+      color: #638186;
+    }
+
+    /* ===== 响应式细调 ===== */
+    @media (max-width: 680px) {
+      body {
+        padding: 0.6rem;
+      }
+      .hero {
+        padding: 2.2rem 1.4rem 2rem;
+        border-radius: 1.8rem 1.8rem 1.2rem 1.2rem;
+      }
+      .hero h1 {
+        font-size: 1.8rem;
+      }
+      .card {
+        padding: 1.4rem 1.2rem;
+      }
+      .info-block {
+        padding: 1.5rem 1.2rem;
+      }
+      .faq-summary {
+        padding: 1.2rem 1.2rem 1.5rem;
+      }
+      .footer-links {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    @media (max-width: 460px) {
+      .hero h1 {
+        font-size: 1.6rem;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <!-- HERO -->
+  <div class="hero">
+    <h1>竞彩 · 资料索引</h1>
+    <div class="sub">从赛程、赔率到历史数据，系统化整理足球与篮球竞猜信息源，辅助理性研究与信息归档。</div>
+    <div class="tagline">📋 信息聚合 · 客观呈现 · 定期更新</div>
+  </div>
+
+  <!-- 优势区（网格卡片） -->
+  <div class="grid-2col">
+    <div class="card">
+      <h3><i></i> 多维度数据归档</h3>
+      <p>覆盖主流联赛与杯赛，按赛季、轮次、对阵索引，浓缩赔率变化与近期战绩，便于横向对比。</p>
+      <div class="small-meta">来源整合：官方统计 &amp; 授权数据商</div>
+    </div>
+    <div class="card accent-border-bluegreen">
+      <h3><i></i> 结构化赛程表</h3>
+      <p>每轮赛程以表格与卡片双视图呈现，标注开赛时间、主客队、参考赔率区间，适合信息检索与复盘。</p>
+      <div class="small-meta">涵盖五大联赛、欧冠、NBA 等</div>
+    </div>
+  </div>
+
+  <div class="grid-3col">
+    <div class="card">
+      <h3><i></i> 动态资讯整理</h3>
+      <p>收集球队近况、伤病简报、战术变动等公开信息，按比赛日分类归档，减少信息碎片。</p>
+    </div>
+    <div class="card accent-border-bluegreen">
+      <h3><i></i> 指数变化记录</h3>
+      <p>主流欧洲指数、亚洲让球、大小球趋势以时间轴方式记录，方便回溯市场情绪变化。</p>
+    </div>
+    <div class="card">
+      <h3><i></i> 历史交锋检索</h3>
+      <p>提供两队过往对阵数据，包含比分、控球率、射门等基础统计，支持纵向对比研究。</p>
+    </div>
+  </div>
+
+  <!-- 说明区：从资料整理角度 -->
+  <div class="info-block">
+    <h2><span></span> 关于本索引页</h2>
+    <p>本页面定位为信息整理与资料索引，围绕竞彩相关赛事提供结构化的数据聚合。<strong>不提供投注建议</strong>，不包含实时奖金或诱导性内容。所有公开数据均来自合规渠道，仅供个人研究参考。</p>
+    <ul>
+      <li>每日更新赛程与基础数据（伤病、阵容、天气等公共信息）。</li>
+      <li>赔率变动记录保留至少 30 天历史版本。</li>
+      <li>所有链接指向外部官方信息源，本站仅做分类与摘要。</li>
+    </ul>
+    <p style="margin-top:0.8rem;">如需直接访问赛事数据中心，可前往 <a href="https://portalcn-sporttery.com" style="color:#09635c;font-weight:500;text-decoration:underline;text-underline-offset:2px;">竞彩网</a> 获取更完整的赛事列表与官方公告。该平台为赛事信息主要聚合入口，数据维度更为全面。</p>
+  </div>
+
+  <!-- FAQ 摘要 -->
+  <div class="faq-summary">
+    <h2>常见索引问题 · 摘要</h2>
+    <div class="faq-item">
+      <strong>Q：数据滞后怎么办？</strong>
+      <p>赛程与指数更新通常在开赛前 48 小时至临场持续刷新。若遇延迟，建议人工复核原始数据源。</p>
+    </div>
+    <div class="faq-item">
+      <strong>Q：是否包含竞彩单关/串关的推荐？</strong>
+      <p>本索引仅整理公开数据与统计信息，不输出任何投注倾向或预测。请理性参考。</p>
+    </div>
+    <div class="faq-item">
+      <strong>Q：如何利用历史交锋记录？</strong>
+      <p>可结合近期状态与指数变化综合阅读。往绩仅是参考维度之一，不宜单独作为判断依据。</p>
+    </div>
+    <div class="faq-more">—— 更多细节可在 <a href="https://portalcn-sporttery.com" style="color:#09635c;text-decoration:underline;text-underline-offset:2px;">竞彩网</a> 查阅完整说明。</div>
+  </div>
+
+  <!-- 底部链接区 -->
+  <div class="footer-links">
+    <div>
+      <span style="font-weight:450;">索引数据源：</span>
+      <a href="https://portalcn-sporttery.com">竞彩网</a> 
+      <span style="margin:0 0.4rem;color:#8aaeb3;">·</span>
+      <a href="#" style="pointer-events:none;opacity:0.7;">赛事日历</a>
+    </div>
+    <div class="footer-note">
+      <span>仅作为资料整理 · 不构成任何指导</span>
+    </div>
+  </div>
+
+  <!-- 很小的版权/免责（非强制但自然） -->
+  <div style="margin-top:1.2rem;font-size:0.75rem;color:#6d9099;text-align:center;border-top:1px solid #d7e7ea;padding-top:1rem;">
+    信息整理页 · 所有数据来自公开渠道 · 仅供个人研究
+  </div>
+</div>
+</body>
+</html>
